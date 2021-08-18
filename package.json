@@ -1,0 +1,10 @@
+{
+  "name": "cy",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Fernando <lnfernandobr@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cypress": "3.6.0"
+  }
+}
