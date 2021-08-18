@@ -6,7 +6,7 @@ it("Equality", () => {
 
 it("Truthy", () => {
   const a = true;
-  expect(a).equal(true);
+   expect(a).equal(true);
 });
 
 it("Object Equality", () => {
