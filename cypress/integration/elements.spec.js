@@ -61,12 +61,25 @@ describe("Work with basic elements", () => {
       .should("have.value", "acerto");
   });
 
-  it.only("Radio button", () => {
+  it("Radio button", () => {
     cy.get("#formSexoFem").click().should("be.checked");
     cy.get("#formSexo > tbody > tr > :nth-child(1) > label").should(
       "not.be.checked"
     );
     // Check length of radio group
     cy.get("[name='formSexo']").should("have.length", 2);
+  });
+
+  it("Checkbox", () => {
+    // cy.get("#formComidaFavorita").click().should("be.checked");
+
+    // Click all checkbox of group
+    cy.get("[name=formComidaFavorita]").click({ multiple: true });
+  });
+
+  it.only("Select", () => {
+    cy.get("[data-test=dataEscolaridade]")
+      .select("2o grau completo")
+      .should("have.value", "2graucomp");
   });
 });
