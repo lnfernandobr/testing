@@ -83,7 +83,7 @@ describe("Work with basic elements", () => {
       .should("have.value", "2graucomp");
   });
 
-  it.only("Multiple select", () => {
+  it("Multiple select", () => {
     cy.get("[data-testid=dataEsportes]").select(["Corrida", "futebol", "nada"]);
   });
 });
