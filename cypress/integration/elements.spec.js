@@ -77,9 +77,13 @@ describe("Work with basic elements", () => {
     cy.get("[name=formComidaFavorita]").click({ multiple: true });
   });
 
-  it.only("Select", () => {
+  it("Select", () => {
     cy.get("[data-test=dataEscolaridade]")
       .select("2o grau completo")
       .should("have.value", "2graucomp");
+  });
+
+  it.only("Multiple select", () => {
+    cy.get("[data-testid=dataEsportes]").select(["Corrida", "futebol", "nada"]);
   });
 });
