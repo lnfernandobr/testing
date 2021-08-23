@@ -4,7 +4,7 @@
   "main": "index.js",
   "author": "Fernando <lnfernandobr@gmail.com>",
   "scripts": {
-    "open": "cypress open"
+    "cy": "cypress open"
   },
   "license": "MIT",
   "dependencies": {
