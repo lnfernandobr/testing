@@ -77,13 +77,28 @@ describe("Work with basic elements", () => {
     cy.get("[name=formComidaFavorita]").click({ multiple: true });
   });
 
-  it("Select", () => {
+  it.only("Select", () => {
     cy.get("[data-test=dataEscolaridade]")
       .select("2o grau completo")
       .should("have.value", "2graucomp");
+
+    cy.get("[data-test=dataEscolaridade] option").should("have.length", 8);
+
+    cy.get("[data-test=dataEscolaridade] option").then((element) => {
+      const values = [];
+      element.each(function () {
+        values.push(this.innerHTML);
+      });
+      expect(values).to.include.members(["Superior", "Mestrado"]);
+    });
   });
 
-  it("Multiple select", () => {
-    cy.get("[data-testid=dataEsportes]").select(["Corrida", "futebol", "nada"]);
+  it.only("Multiple select", () => {
+    cy.get("[data-testid=dataEsportes]").select(["futebol", "Corrida", "nada"]);
+
+    cy.get("[data-testid=dataEsportes]").then((element) => {
+      expect(element.val()).to.be.deep.equal(["futebol", "Corrida", "nada"]);
+      expect(element.val()).to.have.length(3);
+    });
   });
 });

@@ -44,4 +44,20 @@ describe("Helpers", () => {
     // Wrap object
     cy.wrap(obj).its("address.street").should("contain", street);
   });
+
+  it.only("Invoke", () => {
+    const getValues = () => 1;
+    const sumValues = (a, b, c) => a + b + c;
+
+    cy.wrap({ getValues }).invoke("getValues").should("be.equal", 1);
+    cy.wrap({ sumValues }).invoke("sumValues", 1, 2, 5).should("be.equal", 8);
+
+    cy.get("#formNome").invoke("val", "Texto via invoke");
+
+    cy.window().invoke("alert", "Fala mano whi");
+    cy.get("#resultado").invoke(
+      "html",
+      "<input type='button' value='Hackeado'>"
+    );
+  });
 });
