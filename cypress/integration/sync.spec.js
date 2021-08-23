@@ -33,7 +33,7 @@ describe("Syncs", () => {
   });
 
   // To change default timeout settings of cypress, we need add to cypress.json an props called  defaultCommandTimeout as true
-  it.only("TimeOut", () => {
+  it("TimeOut", () => {
     cy.get("#buttonDelay").click();
     // default cypress Timeout is 4 seconds.
     // cy.get("#novoCampo", { timeout: 10000 }).type("funciona");
@@ -42,6 +42,37 @@ describe("Syncs", () => {
     cy.wait(5000);
   });
 
+  it.only("Click retry", () => {
+    // Comandos que alteram o html nao possuem retries.
+    // cy.get("#buttonCount").click().should("have.value", "11");
 
+    // Da erro, porque ele espera encontrar 111, mas o retry acontece no should, nao no click.
+    // cy.get("#buttonCount").click().should("have.value", "11");
 
+    cy.get("#buttonCount").click().click().should("have.value", "11");
+  });
+
+  it.only("should vs then ", () => {
+    cy.get("#buttonListDOM").click();
+
+    cy.get("#lista li span").then((element) => {
+      expect(element).to.have.length(1);
+    });
+
+    cy.get("#lista li span").should((element) => {
+      expect(element).to.have.length(1);
+    });
+
+    cy.get("#buttonListDOM")
+      .then((element) => {
+        expect(element).to.have.length(1);
+        return 2;
+      })
+      .and("equal", 2)
+      .and("not.have.id", "buttonListDOM");
+
+    // No then vc pode chamar outra promise, dentro do should nao, ele vai ficar maluco.
+    // Then aguarda o get finalizar para executar o callback. O then retorna o que vc quiser para as assertivas seguintes
+    // Should executa o callback todas as vezes em que o get tenta obter o resultado. O should sempre retorna o elemento para as assetivas seguindtes, independente do que vc retorne
+  });
 });
