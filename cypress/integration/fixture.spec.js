@@ -17,5 +17,7 @@ describe("Fixtures testes", () => {
         cy.get("#formNome").type(this.user.name);
         cy.get("#formSobrenome").type(this.user.lastName);
       });
+
+    cy.clickAlert("#alert", "Hello there!");
   });
 });

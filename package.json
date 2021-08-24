@@ -8,7 +8,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "cypress": "3.6.0"
+    "cypress": "3.6.0",
+    "cypress-xpath": "^1.6.2"
   },
   "devDependencies": {
     "prettier": "^2.3.2"
